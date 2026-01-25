@@ -1,8 +1,8 @@
 package es.pilar.dam.AccesoDatos2.ejercicio14.model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+//import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeParseException;
 
 public class Alumno {
 	private int id;
@@ -10,13 +10,13 @@ public class Alumno {
 	private String nombre, apellidos, ciclo, curso, grupo;
 	private char genero;
 
-	private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	//private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private LocalDate fecha;
 	
 	public Alumno() { };
 	
 	public Alumno(int nia, String nombre, String apellidos, String ciclo, String curso, String grupo, char genero,
-			String fecha) {
+			LocalDate fecha) {
 
 		this.nia = nia;
 		this.nombre = nombre;
@@ -25,13 +25,14 @@ public class Alumno {
 		this.curso = curso;
 		this.grupo = grupo;
 		this.genero = genero;
+		this.fecha = fecha;
 
-		try {
-			this.fecha = LocalDate.parse(fecha, FORMATO);
-
-		} catch (DateTimeParseException e) {
-			System.out.println("Formato de fecha incorrecto");
-		}
+//		try {
+//			this.fecha = LocalDate.parse(fecha, FORMATO);
+//
+//		} catch (DateTimeParseException e) {
+//			System.out.println("Formato de fecha incorrecto");
+//		}
 	}
 
 	@Override
@@ -103,14 +104,14 @@ public class Alumno {
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-
-	public static DateTimeFormatter getFormato() {
-		return FORMATO;
-	}
-
-	public String getFechaString() {
-		return this.fecha.format(FORMATO);
-	}
+//
+//	public static DateTimeFormatter getFormato() {
+//		return FORMATO;
+//	}
+//
+//	public String getFechaString() {
+//		return this.fecha.format(FORMATO);
+//	}
 
 	public int getId() {
 		return id;

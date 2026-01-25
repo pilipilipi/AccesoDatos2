@@ -152,7 +152,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		        rs.getString("curso"), 
 		        rs.getString("grupo"),
 		        rs.getString("genero").charAt(0), 
-		        rs.getDate("fecha").toString()
+		        rs.getDate("fecha").toLocalDate()
 		    );
 		    
 		a.setId(rs.getInt("id"));  

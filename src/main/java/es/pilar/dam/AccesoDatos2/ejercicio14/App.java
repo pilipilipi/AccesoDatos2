@@ -14,7 +14,8 @@ import es.pilar.dam.AccesoDatos2.ejercicio14.pool.MyDataSource;
 public class App {
 
 	public static void main(String[] args) {
-		testDao();
+		Menu menu = new Menu();
+		menu.init();
 	}
 
 	public static void testDao() {
