@@ -8,19 +8,18 @@ import java.util.List;
 
 import es.pilar.dam.AccesoDatos2.ejercicio14.dao.AlumnoDaoImpl;
 import es.pilar.dam.AccesoDatos2.ejercicio14.model.Alumno;
+import es.pilar.dam.AccesoDatos2.ejercicio15.pool.MyDataSource;
 import es.pilar.dam.AccesoDatos2.ejercicio14.dao.AlumnoDao;
-import es.pilar.dam.AccesoDatos2.ejercicio14.pool.MyDataSource;
 
 public class App {
 
 	public static void main(String[] args) {
-		Menu menu = new Menu();
-		menu.init();
+		testDao();
 	}
 
 	public static void testDao() {
 
-		AlumnoDao dao = AlumnoDaoImpl.getInstance();
+		AlumnoDao dao = new AlumnoDaoImpl();
 
 		//Alumno a = new Alumno(2024001, "Andrés", "Pérez García", "DAM", "1", "A", 'H', "2005-03-25");
 		List<Alumno> alumnos;

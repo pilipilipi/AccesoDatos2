@@ -1,4 +1,4 @@
-package es.pilar.dam.AccesoDatos2.ejercicio14;
+package es.pilar.dam.AccesoDatos2.ejercicio14.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import es.pilar.dam.AccesoDatos2.ejercicio14.dao.AlumnoDao;
-import es.pilar.dam.AccesoDatos2.ejercicio14.dao.AlumnoDaoImpl;
 import es.pilar.dam.AccesoDatos2.ejercicio14.model.Alumno;
 
 public class Menu {
@@ -21,11 +20,11 @@ public class Menu {
 	private AlumnoDao dao;
 	
 	public Menu() {
-		sc = new KeyboardReader();
-		dao = AlumnoDaoImpl.getInstance();				
+		sc = new KeyboardReader();			
 	}
 	
-	public void init() {
+	public void init(AlumnoDao dao) {
+		this.dao = dao;
 		int opcion;
 		
 		do {
@@ -100,9 +99,9 @@ public class Menu {
 		System.out.print("-> ");
 		String curso = sc.nextLine();
 
-		System.out.println("Grupo:");
-		System.out.print("-> ");
-		String grupo = sc.nextLine();
+//		System.out.println("Grupo:");
+//		System.out.print("-> ");
+//		String grupo = sc.nextLine();
 
 		System.out.println("Género (f/m)");
 		System.out.print("-> ");
@@ -112,7 +111,7 @@ public class Menu {
 		System.out.print("-> ");
 		LocalDate fecha = sc.nextLocalDate();
 		
-		return new Alumno(nia, nombre, apellidos, ciclo, curso, grupo, genero, fecha);
+		return new Alumno(nia, nombre, apellidos, ciclo, curso, 1, genero, fecha);
 	}
 	
 	private void mostrarTodos() {
@@ -226,9 +225,9 @@ public class Menu {
 	    String curso = sc.nextLine();
 	    a.setCurso(curso.isBlank() ? a.getCurso() : curso);
 
-	    System.out.printf("Grupo (%s): ", a.getGrupo());
-	    String grupo = sc.nextLine();
-	    a.setGrupo(grupo.isBlank() ? a.getGrupo() : grupo);
+//	    System.out.printf("Grupo (%s): ", a.getGrupo());
+//	    String grupo = sc.nextLine();
+//	    a.setGrupo(grupo.isBlank() ? a.getGrupo() : grupo);
 
 	    System.out.printf("Género (%c): ", a.getGenero());
 	    String genero = sc.nextLine();

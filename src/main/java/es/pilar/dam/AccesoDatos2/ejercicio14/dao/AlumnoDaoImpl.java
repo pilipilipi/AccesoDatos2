@@ -9,44 +9,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.pilar.dam.AccesoDatos2.ejercicio14.model.Alumno;
-import es.pilar.dam.AccesoDatos2.ejercicio14.pool.MyDataSource;
+import es.pilar.dam.AccesoDatos2.ejercicio15.pool.MyDataSource;
 
 public class AlumnoDaoImpl implements AlumnoDao {
 
-	private static AlumnoDaoImpl instancia;
-
-	static {
-		instancia = new AlumnoDaoImpl();
-	}
-
-	private AlumnoDaoImpl() {
+	public AlumnoDaoImpl() {
 	};
-
-	public static AlumnoDaoImpl getInstance() {
-		return instancia;
-	}
 
 	@Override
 	public int add(Alumno a) throws SQLException {
 
 		String sql = "INSERT INTO alumno (nia, nombre, apellidos, ciclo, curso, grupo, genero, fecha) \n"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "VALUES (?, ?, ?, ?, ?, 1, ?, ?)";
 
 		int result;
 
 		try (Connection conexion = MyDataSource.getConnection();
-				PreparedStatement pstm = conexion.prepareStatement(sql)) {
+				PreparedStatement pstm = conexion.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
 			pstm.setInt(1, a.getNia());
 			pstm.setString(2, a.getNombre());
 			pstm.setString(3, a.getApellidos());
 			pstm.setString(4, a.getCiclo());
 			pstm.setString(5, a.getCurso());
-			pstm.setString(6, a.getGrupo());
-			pstm.setString(7, String.valueOf(a.getGenero()));
-			pstm.setDate(8, Date.valueOf(a.getFecha()));
+			//pstm.setString(6, a.getGrupo());
+			pstm.setString(6, String.valueOf(a.getGenero()));
+			pstm.setDate(7, Date.valueOf(a.getFecha()));
 
 			result = pstm.executeUpdate();
+			
+			try (ResultSet rs = pstm.getGeneratedKeys()) {
+	            if (rs.next()) {
+	                a.setId(rs.getInt(1));
+	            }
+	        }
 		}
 
 		return result;
@@ -105,7 +101,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 	public int update(Alumno a) throws SQLException {
 		
 		String sql = "UPDATE alumno "
-				+ "SET nia = ?, nombre = ?, apellidos = ?, ciclo  = ?, curso = ?, grupo = ?, genero = ?, fecha = ? "
+				+ "SET nia = ?, nombre = ?, apellidos = ?, ciclo  = ?, curso = ?, genero = ?, fecha = ? "
 				+ "WHERE id = ?";
 		
 		int result;
@@ -118,11 +114,11 @@ public class AlumnoDaoImpl implements AlumnoDao {
 			pstm.setString(3, a.getApellidos());
 			pstm.setString(4, a.getCiclo());
 			pstm.setString(5, a.getCurso());
-			pstm.setString(6, a.getGrupo());
-			pstm.setString(7, String.valueOf(a.getGenero()));
-			pstm.setDate(8, Date.valueOf(a.getFecha()));
+			//pstm.setString(6, a.getGrupo());
+			pstm.setString(6, String.valueOf(a.getGenero()));
+			pstm.setDate(7, Date.valueOf(a.getFecha()));
 
-			pstm.setInt(9, a.getId());
+			pstm.setInt(8, a.getId());
 			
 			result = pstm.executeUpdate();
 		}
@@ -150,7 +146,7 @@ public class AlumnoDaoImpl implements AlumnoDao {
 		        rs.getString("apellidos"),
 		        rs.getString("ciclo"), 
 		        rs.getString("curso"), 
-		        rs.getString("grupo"),
+		        rs.getInt("grupo"),
 		        rs.getString("genero").charAt(0), 
 		        rs.getDate("fecha").toLocalDate()
 		    );

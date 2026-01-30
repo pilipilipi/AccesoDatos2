@@ -1,22 +1,21 @@
-package es.pilar.dam.AccesoDatos2.ejercicio14.model;
+package es.pilar.dam.AccesoDatos2.ejercicio15.model;
 
 import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
-//import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Alumno {
 	private int id;
-	private int nia, grupo;
+	private int nia;
 	private String nombre, apellidos, ciclo, curso;
+	private Grupo grupo;
 	private char genero;
 
-	//private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private LocalDate fecha;
-	
-	public Alumno() { };
-	
-	public Alumno(int nia, String nombre, String apellidos, String ciclo, String curso, int grupo, char genero,
-			LocalDate fecha) {
+
+	public Alumno(int nia, String nombre, String apellidos, String ciclo, String curso, Grupo grupo, char genero,
+			String fecha) {
 
 		this.nia = nia;
 		this.nombre = nombre;
@@ -25,19 +24,18 @@ public class Alumno {
 		this.curso = curso;
 		this.grupo = grupo;
 		this.genero = genero;
-		this.fecha = fecha;
 
-//		try {
-//			this.fecha = LocalDate.parse(fecha, FORMATO);
-//
-//		} catch (DateTimeParseException e) {
-//			System.out.println("Formato de fecha incorrecto");
-//		}
+		try {
+			this.fecha = LocalDate.parse(fecha, FORMATO);
+
+		} catch (DateTimeParseException e) {
+			System.out.println("Formato de fecha incorrecto");
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Alumno [id=" + id + ", nia=" + nia + ", nombre=" + nombre + ", apellidos=" + apellidos + ", ciclo=" + ciclo
+		return "Alumno [nia=" + nia + ", nombre=" + nombre + ", apellidos=" + apellidos + ", ciclo=" + ciclo
 				+ ", curso=" + curso + ", grupo=" + grupo + ", genero=" + genero + ", fecha=" + fecha + "]";
 	}
 
@@ -81,11 +79,11 @@ public class Alumno {
 		this.curso = curso;
 	}
 
-	public int getGrupo() {
+	public Grupo getGrupo() {
 		return grupo;
 	}
 
-	public void setGrupo(int grupo) {
+	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
 
@@ -104,15 +102,15 @@ public class Alumno {
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-//
-//	public static DateTimeFormatter getFormato() {
-//		return FORMATO;
-//	}
-//
-//	public String getFechaString() {
-//		return this.fecha.format(FORMATO);
-//	}
 
+	public static DateTimeFormatter getFormato() {
+		return FORMATO;
+	}
+
+	public String getFechaString() {
+		return this.fecha.format(FORMATO);
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -121,3 +119,4 @@ public class Alumno {
 		this.id = id;
 	}
 }
+
