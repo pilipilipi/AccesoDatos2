@@ -1,6 +1,5 @@
 package es.pilar.dam.AccesoDatos2.ejercicio15.view;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -82,7 +81,7 @@ public class MenuImpl implements Menu {
 
 	@Override
 	public Grupo pedirDatosGrupo() {
-		System.out.println("Nombre");
+		System.out.println("Nombre grupo");
 		System.out.print("-> ");
 		String nombre = sc.nextLine();
 		
@@ -91,31 +90,40 @@ public class MenuImpl implements Menu {
 
 	@Override
 	public void mostrarAlumnos(List<Alumno> alumnos) {
-		
-		
+		for(int i = 0; i < alumnos.size(); i++) {
+			System.out.println(alumnos.get(i));
+		}	
 	}
 
 	@Override
 	public void mostrarGrupos(List<Grupo> grupos) {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < grupos.size(); i++) {
+			System.out.println(grupos.get(i));
+		}	
 	}
 
 	@Override
 	public String pedirCadena(String mensaje) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("\n" + mensaje);
+		System.out.print("->");
+		return sc.nextLine();
 	}
 
 	@Override
 	public int pedirEntero(String mensaje) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("\n" + mensaje);
+		System.out.print("->");
+		try {
+            return Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Debe ser un número entero.");
+            return pedirEntero(mensaje);
+        }
 	}
 
 	@Override
 	public void mostrarMensaje(String mensaje) {
-		// TODO Auto-generated method stub
+		System.out.println(mensaje);
 		
 	}
 
