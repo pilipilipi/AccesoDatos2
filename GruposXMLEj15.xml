@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<grupos>
+    <grupo id="1" nombre="dam"/>
+    <grupo id="2" nombre="aaa">
+        <alumno apellidos="pupu" ciclo="daw" curso="2" fecha="2002-02-02" genero="f" id="2" nia="123123" nombre="ppp"/>
+    </grupo>
+    <grupo id="3" nombre="asd">
+        <alumno apellidos="lp" ciclo="dam" curso="2" fecha="2002-02-02" genero="f" id="3" nia="123455" nombre="pop"/>
+    </grupo>
+    <grupo id="4" nombre="dam"/>
+    <grupo id="5" nombre="aaa"/>
+    <grupo id="6" nombre="asd"/>
+</grupos>

@@ -1,4 +1,4 @@
-package es.pilar.dam.AccesoDatos2.ejercicio14;
+package es.pilar.dam.AccesoDatos2.ejercicio14.controlador;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
