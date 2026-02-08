@@ -1,0 +1,6 @@
+2026-02-08 14:05:10 INFO  Controller - Terminado
+2026-02-08 15:10:27 INFO  Controller - Terminado
+2026-02-08 15:10:57 INFO  Controller - Terminado
+2026-02-08 15:15:25 INFO  HikariDataSource - HikariPool-1 - Starting...
+2026-02-08 15:15:25 INFO  HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ee660fb
+2026-02-08 15:15:25 INFO  HikariDataSource - HikariPool-1 - Start completed.
